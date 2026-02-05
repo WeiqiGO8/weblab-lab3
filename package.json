@@ -1,29 +1,30 @@
 {
-  "name": "weblab-server",
-  "version": "1.0.0",
-  "description": "weblab server for lab 3",
-  "keywords": [
-    "JavaScript",
-    "Node.js",
-    "npm",
-    "Express"
-  ],
-  "homepage": "https://github.com/WeiqiGO8/weblab-lab3#readme",
-  "bugs": {
-    "url": "https://github.com/WeiqiGO8/weblab-lab3/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/WeiqiGO8/weblab-lab3.git"
-  },
-  "license": "ISC",
-  "author": "Hannah Jansson",
-  "type": "commonjs",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "express": "^5.2.1"
-  }
+	"name": "weblab-server",
+	"version": "1.0.0",
+	"description": "weblab server for lab 3",
+	"keywords": [
+		"JavaScript",
+		"Node.js",
+		"npm",
+		"Express"
+	],
+	"homepage": "https://github.com/WeiqiGO8/weblab-lab3#readme",
+	"bugs": {
+		"url": "https://github.com/WeiqiGO8/weblab-lab3/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/WeiqiGO8/weblab-lab3.git"
+	},
+	"license": "ISC",
+	"author": "Hannah Jansson",
+	"type": "commonjs",
+	"main": "index.js",
+	"scripts": {
+		"start": "node server.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"dependencies": {
+		"express": "^5.2.1"
+	}
 }
