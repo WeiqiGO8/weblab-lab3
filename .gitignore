@@ -1,0 +1,3 @@
+// 2026-01-21 - https://www.geeksforgeeks.org/git/how-to-ignore-node_modules-folder-in-git/
+
+node_modules/
