@@ -1,3 +1,5 @@
+//! Lab 3 part 1 task 3
+
 const express = require("express");
 const app = express();
 const PORT = 3000;
@@ -8,6 +10,7 @@ app.get("/welcome", (req, res) => {
 	res.send("Welcome to the REST API!");
 });
 
+//! Lab 3 part 1 task 4
 app.get("/api/products", (req, res) => {
 	res.json(products); // Converts Javascript data into JSON and sends it back
 });
@@ -20,7 +23,7 @@ app.get("/api/products/:id", (req, res) => {
 		console.log(product);
 	}
 
-	res.json(product);
+	res.json();
 });
 
 app.listen(PORT, () => {
