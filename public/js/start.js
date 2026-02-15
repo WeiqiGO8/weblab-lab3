@@ -11,6 +11,17 @@ function fetchProducts() {
 		.catch((error) => console.log(error));
 }
 
-function fetchProductsByID() {}
+function fetchProductsByID() {
+	fetch(`/api/products/${id}`)
+		.then((response) => {
+			return response.json();
+		})
+		.then((data) => {
+			console.log(data);
+		})
+		.catch((error) => {
+			return console.log(error);
+		});
+}
 
-fetchProducts();
+fetchProducts(id);

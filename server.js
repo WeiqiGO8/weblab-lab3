@@ -18,12 +18,19 @@ app.get("/api/products", (req, res) => {
 app.get("/api/products/:id", (req, res) => {
 	const rid = parseInt(req.params.id);
 	console.log(rid);
+
 	// Loop over products and take out the respective object !!
 	for (let product of products) {
-		console.log(product);
+		if (product.id === rid) {
+			console.log(`Match found`);
+			return res.json(product);
+		}
 	}
+	// 	const product = products.find(p.id === rid);
 
-	res.json();
+	// 	if (!product) {
+	// 		return res.status(404).json({ message: `Product not found` });
+	// 	}
 });
 
 app.listen(PORT, () => {
