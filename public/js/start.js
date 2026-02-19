@@ -12,50 +12,37 @@ function fetchProducts() {
 			// Loop over products and take out the respective object !!
 			console.log(`get response data`, data);
 			data.forEach((p) => {
-				let newLi = document.createElement("li");
-				newLi.innerText = p.id + ": " + p.name + ", " + p.price;
-				document.querySelector(`#insertProduct`).appendChild(newLi);
+				console.log(`products fetched`, data);
+				// let newLi = document.createElement("li");
+				// newLi.innerText = p.id + ": " + p.name + ", " + p.price;
+				// document.querySelector(`#insertProduct`).appendChild(newLi);
 			});
 		})
 		.catch((error) => console.log(error));
 }
 
-function fetchProductsByID() {
+fetchProducts();
+
+function fetchProductsByID(id) {
 	fetch(`/api/products/${id}`)
-		.then((response) => {
-			return response.json();
-		})
-		.then((data) => {
-			console.log(data);
-		})
-		.catch((error) => {
-			return console.log(error);
-		});
+		.then((response) => response.json())
+		.then((data) => console.log(data))
+		.catch((error) => console.log(error));
 }
 
-//fetchProducts();
+// fetchProductsByID(2);
 
 //! Lab 3 part 2 task 1
 //* Handling POST requests
-// let submitBtn = document.querySelector("#submitBtn");
-
 function addProduct() {
 	fetch("/api/products", {
 		method: `POST`,
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({
-			productName: "NewProduct",
-			productPrice: 100,
-		}),
+		body: JSON.stringify({ name: "TV", price: 500 }),
 	})
 		.then((response) => response.json())
-		.then((data) => {
-			console.log("Post response data:", data);
-
-			// let newLi = document.createElement("li");
-			// newLi.innerText = p.id + ": " + p.name + ", " + p.price;
-			// document.querySelector(`#insertProduct`).appendChild(newLi);
-		});
+		.then((data) => console.log("Post response data:", data))
+		.catch((error) => console.log(error));
 }
 
 addProduct();
@@ -63,28 +50,35 @@ addProduct();
 //! Lab 3 part 2 task 2
 //* PUT request for Updating Resources
 
-function updateProducts() {
-	fetch("/api/products", {
+function updateProducts(id) {
+	fetch(`/api/products/${id}`, {
 		method: "PUT",
 		headers: { "Content-Type": "application/json" },
-		body: JSON.stringify({ productName: "update product name", price: 200 }),
+		body: JSON.stringify({
+			name: "The selected id will be updated",
+			price: 300,
+		}),
 	})
 		.then((response) => response.json())
-		.then((data) => {
-			console.log(`PUT response data:`, data);
-		});
+		.then((data) => console.log(`PUT response data:`, data))
+		.catch((error) => console.log(error));
 }
-
-updateProducts();
+updateProducts(2);
 
 //! Lab 3 part 2 task 3
 //* DELETE Requests
-function deleteProduct() {
-	fetch("/api/products", {
+function deleteProduct(id) {
+	fetch(`/api/products/${id}`, {
 		method: "DELETE",
 	})
-		.then((response) => response.json())
-		.then((data) => {
-			console.log("DELETE RESPONSE", data);
-		});
+		.then((response) => {
+			if (!response.ok)
+				throw new Error("Error occured when trying to retrive information");
+			return response.json();
+		})
+		.then((data) => console.log("DELETE RESPONSE", data))
+		.catch((error) =>
+			console.log("Something went wrong when trying to delete", error),
+		);
 }
+// deleteProduct(1);

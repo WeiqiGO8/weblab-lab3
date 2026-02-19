@@ -27,7 +27,6 @@ app.get("/api/products", (req, res) => {
 app.get("/api/products/:id", (req, res) => {
 	const rid = parseInt(req.params.id);
 	console.log(rid);
-	// * This works
 	for (let product of products) {
 		if (product.id === rid) {
 			console.log(`Match found`);
@@ -39,31 +38,53 @@ app.get("/api/products/:id", (req, res) => {
 //! Lab 3 part 2 task 1
 // * Handling POST requests
 app.post("/api/products", express.json(), (req, res) => {
-	const { productName, productPrice } = req.body;
-	console.log(productName, productPrice);
+	const { name, price } = req.body;
+
+	const postNewProduct = {
+		id: product.length + 1,
+		name: name,
+		price: Number(price),
+	};
+	products.push({ postNewProduct });
+
 	res.json({
 		message: "POST - Created a new item",
-		data: { productName, productPrice },
+		data: { postNewProduct },
 	});
 });
 
 //! Lab 3 part 2 task 2
 //* PUT request for Updating Resources
 app.put("/api/products/:id", express.json(), (req, res) => {
-	const itemId = req.params.id;
-	const updatedData = req.body;
+	const itemId = Number(req.params.id);
+	const { name, price } = req.body;
+	const product = products.find((p) => p.id === itemId);
+
+	product.name = name;
+	product.price = price;
+
 	res.json({
 		message: `PUT - updated item with ID ${itemId}`,
-		data: updatedData,
+		data: product,
 	});
 });
 
 //! Lab 3 part 2 task 3
 //* DELETE Requests
-app.delete("/api/products/:id", express.json(), (req, res) => {
-	res.json({
-		message: `DELETE - removed item with ID ${itemID}`,
-	});
+app.delete("/api/products/:id", (req, res) => {
+	const itemId = parseInt(req.params.id);
+
+	let index = products.findIndex((p) => p.id === itemId);
+	if (index !== -1) {
+		let deletedProduct = products.splice(index, 1)[0];
+
+		res.json({
+			message: `DELETE - removed item with ID ${itemId}`,
+			deletedProduct,
+		});
+	}
+
+	console.log("/api/products DELETE called", itemId);
 });
 
 //* PORT/localhost
