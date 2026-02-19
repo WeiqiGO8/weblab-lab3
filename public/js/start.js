@@ -37,7 +37,7 @@ function fetchProductsByID() {
 
 //! Lab 3 part 2 task 1
 //* Handling POST requests
-let submitBtn = document.querySelector("#submitBtn");
+// let submitBtn = document.querySelector("#submitBtn");
 
 function addProduct() {
 	fetch("/api/products", {
@@ -59,3 +59,32 @@ function addProduct() {
 }
 
 addProduct();
+
+//! Lab 3 part 2 task 2
+//* PUT request for Updating Resources
+
+function updateProducts() {
+	fetch("/api/products", {
+		method: "PUT",
+		headers: { "Content-Type": "application/json" },
+		body: JSON.stringify({ productName: "update product name", price: 200 }),
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(`PUT response data:`, data);
+		});
+}
+
+updateProducts();
+
+//! Lab 3 part 2 task 3
+//* DELETE Requests
+function deleteProduct() {
+	fetch("/api/products", {
+		method: "DELETE",
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log("DELETE RESPONSE", data);
+		});
+}
