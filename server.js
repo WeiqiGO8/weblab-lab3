@@ -56,7 +56,7 @@ app.post("/api/products", express.json(), (req, res) => {
 //! Lab 3 part 2 task 2
 //* PUT request for Updating Resources
 app.put("/api/products/:id", express.json(), (req, res) => {
-	const itemId = Number(req.params.id);
+	const itemId = parseInt(req.params.id);
 	const { name, price } = req.body;
 	const product = products.find((p) => p.id === itemId);
 
